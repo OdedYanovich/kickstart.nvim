@@ -6,8 +6,9 @@ vim.g.maplocalleader = ' '
 --     silent = true,       -- do not show message
 -- }
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<leader>b', ':w<CR><cmd>!gleam build<CR>', { desc = '[B]uild app', silent = true })
+vim.keymap.set('n', '<leader>b', ':wa<CR><cmd>!gleam build<CR>', { desc = '[B]uild app', silent = true })
 -- NOTE: Mapping might need a replacement
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -19,10 +20,10 @@ local opts = {
   -- noremap = true,      -- non-recursive
   -- silent = true,       -- do not show message
 }
-vim.keymap.set('n', '<C-l>', ':vertical resize -2<CR>', opts)
+vim.keymap.set('n', '<C-l>', ':vertical resize +2<CR>', opts)
 vim.keymap.set('n', '<C-k>', ':resize +2<CR>', opts)
 vim.keymap.set('n', '<C-j>', ':resize -2<CR>', opts)
-vim.keymap.set('n', '<C-h>', ':vertical resize +2<CR>', opts)
+vim.keymap.set('n', '<C-h>', ':vertical resize -2<CR>', opts)
 vim.keymap.set('n', '-', '<CMD>Oil<CR>')
 
 return {

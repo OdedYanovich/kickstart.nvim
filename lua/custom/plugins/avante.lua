@@ -1,0 +1,35 @@
+return {
+  --   "yetone/avante.nvim",
+  --   event = "VeryLazy",          -- Loads plugin lazily for performance
+  --   build = "make",              -- Ensures avante.nvim is built after install/update
+  --   opts = {
+  --     provider = "copilot",      -- or "openai", etc., depending on your provider
+  --     -- You can add more provider-specific options here
+  --   },
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons",
+  --     "stevearc/dressing.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --     {
+  --       "MeanderingProgrammer/render-markdown.nvim",
+  --       opts = { file_types = { "markdown", "Avante" } },
+  --       ft = { "markdown", "Avante" },
+  --     },
+  --     -- Optional: for Copilot provider
+  --     "zbirenbaum/copilot.lua",
+  --     -- Optional: for image pasting support
+  --     {
+  --       "HakonHarnes/img-clip.nvim",
+  --       event = "VeryLazy",
+  --       opts = {
+  --         default = {
+  --           embed_image_as_base64 = false,
+  --           prompt_for_file_name = false,
+  --           drag_and_drop = { insert_mode = true },
+  --           use_absolute_path = true,
+  --         },
+  --       },
+  --     },
+  --   },
+}
