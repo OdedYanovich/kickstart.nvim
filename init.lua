@@ -13,6 +13,9 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
 
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
+
 vim.g.have_nerd_font = true
 vim.o.number = true
 vim.o.relativenumber = true
@@ -293,6 +296,7 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local lspconfig = require 'lspconfig'
       local servers = {
         -- `:help lspconfig-all`
         --
@@ -300,14 +304,15 @@ require('lazy').setup({
         -- ts_ls = {},
         --
 
-        require('lspconfig').gleam.setup {},
-        require('lspconfig').cssls.setup {},
-        require('lspconfig').nil_ls.setup {},
-        require('lspconfig').html.setup {},
+        lspconfig.gleam.setup {},
+        lspconfig.marksman.setup {},
+        lspconfig.cssls.setup {},
+        lspconfig.nil_ls.setup {},
+        lspconfig.html.setup {},
         -- require('lspconf g').tl_ts.setup {},
         -- require('lspconfig').tsserver.setup {},
-        require('lspconfig').vtsls.setup {},
-        require('lspconfig').jsonls.setup {
+        lspconfig.vtsls.setup {},
+        lspconfig.jsonls.setup {
           commands = {
             Format = {
               function()

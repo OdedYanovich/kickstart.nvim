@@ -26,6 +26,7 @@ vim.keymap.set('n', '<C-j>', ':resize -2<CR>', opts)
 vim.keymap.set('n', '<C-h>', ':vertical resize -2<CR>', opts)
 vim.keymap.set('n', '-', '<CMD>Oil<CR>')
 
+vim.keymap.set('i', '<C-s>', '<Esc><CMD>w<CR>')
 return {
   telescope = function()
     --  :Telescope help_tags `:help telescope` and `:help telescope.setup()`
