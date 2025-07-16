@@ -95,11 +95,6 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 require('lazy').setup({
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
-  -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
-  --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
 
@@ -309,6 +304,7 @@ require('lazy').setup({
         lspconfig.cssls.setup {},
         lspconfig.nil_ls.setup {},
         lspconfig.html.setup {},
+        -- lspconfig.rust_analyzer.setup {},
         -- require('lspconf g').tl_ts.setup {},
         -- require('lspconfig').tsserver.setup {},
         lspconfig.vtsls.setup {},
