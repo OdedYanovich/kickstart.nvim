@@ -1,11 +1,3 @@
--- return {
---   'akinsho/bufferline.nvim',
---   version = '*',
---   dependencies = 'nvim-tree/nvim-web-devicons',
---   config = function()
---     require('bufferline').setup {}
---   end,
--- }-- lazy.nvim
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
@@ -37,6 +29,20 @@ return {
         long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = false, -- enables an input dialog for inc-rename.nvim
         lsp_doc_border = false, -- add a border to hover docs and signature help
+      },
+      routes = {
+        {
+          filter = {
+            event = 'msg_show',
+            -- find = 'missing column', -- text pattern of the error
+            any = {
+              { find = 'missing column' },
+              { find = "Invalid 'end_col'" },
+            },
+          },
+          --Invalid 'end_col'
+          opts = { skip = true }, -- completely ignore matching messages
+        },
       },
     }
   end,

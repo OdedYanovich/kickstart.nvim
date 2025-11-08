@@ -8,7 +8,7 @@ vim.api.nvim_set_hl(0, '@function', { fg = '#00FF00' })
 vim.api.nvim_set_hl(0, '@variable', { fg = '#BB88FF' })
 vim.api.nvim_set_hl(0, '@comment', { fg = '#BBDDBB' })
 vim.cmd 'highlight link @type Type'
-
+vim.opt.laststatus = 0
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -54,6 +54,16 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
+vim.api.nvim_create_autocmd({
+  'InsertLeave',
+  'TextChanged',
+  -- 'TextChangedI'
+}, {
+  pattern = { '*.mjs', '*.gleam' },
+  callback = function()
+    vim.cmd 'silent write'
+  end,
+})
 local gleam_build_group = vim.api.nvim_create_augroup('GleamBuildOnSave', { clear = true })
 
 -- vim.api.nvim_create_autocmd("BufWritePost", {
@@ -91,6 +101,45 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     error('Error cloning lazy.nvim:\n' .. out)
   end
 end
+vim.lsp.config('gleam', {})
+vim.lsp.enable 'gleam'
+vim.lsp.config('marksman', {})
+vim.lsp.enable 'marksman'
+vim.lsp.config('cssls', {})
+vim.lsp.enable 'cssls'
+vim.lsp.config('nil_ls', {})
+vim.lsp.enable 'nil_ls'
+vim.lsp.config('html', {})
+vim.lsp.enable 'html'
+vim.lsp.config('vtsls', {})
+vim.lsp.enable 'vtsls'
+vim.lsp.config('jsonls', {})
+vim.lsp.enable 'jsonls'
+-- vim.lsp.config('', {})
+-- vim.lsp.enable ''
+-- -- `:help lspconfig-all`
+-- --
+-- lspconfig.gleam.setup {},
+-- lspconfig.marksman.setup {},
+-- lspconfig.cssls.setup {},
+-- lspconfig.nil_ls.setup {},
+-- lspconfig.html.setup {},
+-- lspconfig.dartls.setup {},
+-- -- lspconfig.rust_analyzer.setup {},
+-- -- require('lspconf g').tl_ts.setup {},
+-- -- require('lspconfig').tsserver.setup {},
+-- lspconfig.vtsls.setup {},
+-- lspconfig.jsonls.setup {
+--   commands = {
+--     Format = {
+--       function()
+--         vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line '$', 0 })
+--       end,
+--     },
+--   },
+-- },
+-- -- require('lspconfig').lua_ls.setup {},
+
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 require('lazy').setup({
@@ -261,7 +310,8 @@ require('lazy').setup({
       vim.diagnostic.config {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
-        underline = { severity = vim.diagnostic.severity.ERROR },
+        underline = true,
+        -- undercurl = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚 ',
@@ -291,34 +341,32 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local lspconfig = require 'lspconfig'
-      local servers = {
-        -- `:help lspconfig-all`
-        --
-        -- optional typescript plugins: https://github.com/pmizio/typescript-tools.nvim
-        -- ts_ls = {},
-        --
+      -- local lspconfig = require 'lspconfig'
 
-        lspconfig.gleam.setup {},
-        lspconfig.marksman.setup {},
-        lspconfig.cssls.setup {},
-        lspconfig.nil_ls.setup {},
-        lspconfig.html.setup {},
-        -- lspconfig.rust_analyzer.setup {},
-        -- require('lspconf g').tl_ts.setup {},
-        -- require('lspconfig').tsserver.setup {},
-        lspconfig.vtsls.setup {},
-        lspconfig.jsonls.setup {
-          commands = {
-            Format = {
-              function()
-                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line '$', 0 })
-              end,
-            },
-          },
-        },
-        -- require('lspconfig').lua_ls.setup {},
-      }
+      -- local servers = {
+      --   -- `:help lspconfig-all`
+      --   --
+      --   lspconfig.gleam.setup {},
+      --   lspconfig.marksman.setup {},
+      --   lspconfig.cssls.setup {},
+      --   lspconfig.nil_ls.setup {},
+      --   lspconfig.html.setup {},
+      --   lspconfig.dartls.setup {},
+      --   -- lspconfig.rust_analyzer.setup {},
+      --   -- require('lspconf g').tl_ts.setup {},
+      --   -- require('lspconfig').tsserver.setup {},
+      --   lspconfig.vtsls.setup {},
+      --   lspconfig.jsonls.setup {
+      --     commands = {
+      --       Format = {
+      --         function()
+      --           vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line '$', 0 })
+      --         end,
+      --       },
+      --     },
+      --   },
+      --   -- require('lspconfig').lua_ls.setup {},
+      -- }
     end,
   },
 

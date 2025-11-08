@@ -20,13 +20,14 @@ local opts = {
   -- noremap = true,      -- non-recursive
   -- silent = true,       -- do not show message
 }
-vim.keymap.set('n', '<C-l>', ':vertical resize +2<CR>', opts)
-vim.keymap.set('n', '<C-k>', ':resize +2<CR>', opts)
-vim.keymap.set('n', '<C-j>', ':resize -2<CR>', opts)
-vim.keymap.set('n', '<C-h>', ':vertical resize -2<CR>', opts)
+vim.keymap.set('n', '<C-l>', ':vertical resize +3<CR>', opts)
+vim.keymap.set('n', '<C-k>', ':resize +3<CR>', opts)
+vim.keymap.set('n', '<C-j>', ':resize -1<CR>', opts)
+vim.keymap.set('n', '<C-h>', ':vertical resize -1<CR>', opts)
 vim.keymap.set('n', '-', '<CMD>Oil<CR>')
 
 vim.keymap.set('i', '<C-s>', '<Esc><CMD>w<CR>')
+vim.keymap.set('n', '<C-s>', '<CMD>w<CR>')
 return {
   telescope = function()
     --  :Telescope help_tags `:help telescope` and `:help telescope.setup()`
@@ -55,14 +56,14 @@ return {
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+    vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+    vim.keymap.set('n', 'sf', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
     -- Overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
